@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Escala 5x2 – Sinpava</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--ink:#1c2733;--mut:#5d6b79;--line:#d9e0e6;--work:#e6f2ef;--fol:#f6c453;--dom:#8a4fa3;--domt:#fff;--acc:#c42b2a;--sun:#eef1f4;--wt:#dde7f7;--wn:#e3dcf3;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14191f;--card:#1d252e;--ink:#e9eef3;--mut:#9aa8b6;--line:#32404d;--work:#1f3a37;--fol:#d9a92f;--dom:#b27ccc;--domt:#14191f;--acc:#d9423f;--sun:#26313b;--wt:#2a3a55;--wn:#3b2f5e}}
+:root[data-theme="dark"]{--bg:#14191f;--card:#1d252e;--ink:#e9eef3;--mut:#9aa8b6;--line:#32404d;--work:#1f3a37;--fol:#d9a92f;--dom:#b27ccc;--domt:#14191f;--acc:#d9423f;--sun:#26313b;--wt:#2a3a55;--wn:#3b2f5e}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1100px;margin:0 auto;padding:20px 14px 40px}
+h1{font-size:26px;font-weight:800;margin:0 0 4px}
+.hero{background:#fff;color:#1c2733;text-align:center;padding:18px 16px 16px;border-bottom:5px solid #d6312c}.hero img{display:block;margin:0 auto;width:min(240px,68%);height:auto}.hero h1{margin:4px 0 2px;font-size:24px;color:#1c2733}.hero p{margin:0;font-size:14px;color:#5d6b79}
+.sub{color:var(--mut);margin:0 0 18px;max-width:62ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:14px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+label{display:flex;flex-direction:column;font-size:13px;color:var(--mut);gap:4px;flex:1 1 160px}
+input,select,button{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 10px;min-height:40px}
+button{cursor:pointer;font-weight:600}
+button.p{background:var(--acc);color:#fff;border-color:var(--acc)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--acc);outline-offset:1px}
+.two{display:flex;gap:6px}.two select{flex:1;min-width:0}
+.emps{margin-top:12px;display:grid;gap:8px}.er{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:14px;display:grid;gap:6px}.er .h{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.er label{flex:0 1 auto;flex-direction:row;align-items:center;gap:6px}.er input,.er select{min-height:34px;padding:4px 6px}.er .x{margin-left:auto;border:0;font-size:22px;color:var(--mut);background:transparent;min-height:32px}.er .hr{color:var(--mut);font-size:13px}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+table{border-collapse:collapse;font-size:12px;min-width:100%}
+th,td{border:1px solid var(--line);text-align:center;padding:0;min-width:26px;height:28px}
+th{background:var(--bg);font-weight:600}
+th small{display:block;color:var(--mut);font-weight:400}
+td.n,th.n{text-align:left;padding:4px 8px;min-width:230px;position:sticky;left:0;background:var(--card);z-index:1;font-size:13px}
+th.n{background:var(--bg)}
+td.n small{display:block;color:var(--mut)}
+td.w{background:var(--work)}
+td.wt{background:var(--wt)}
+td.wn{background:var(--wn)}
+td.h{font-size:9px;color:var(--mut)}
+td.f{background:var(--fol);color:#2b2100;font-weight:800}
+td.d{background:var(--dom);color:var(--domt);font-weight:800}
+.su{background:var(--sun)}
+td.x{background:var(--acc);color:#fff;font-weight:800}
+.al{border:2px solid var(--acc);border-radius:10px;padding:10px 14px;margin:0 0 12px;background:var(--card);font-size:14px}.al ul{margin:6px 0 0;padding-left:18px;columns:2 260px;font-size:13px}
+.ok{border:2px solid #2e8b57;border-radius:10px;padding:10px 14px;margin:0 0 12px;background:var(--card);font-size:14px}
+td.t{min-width:60px;padding:0 6px;font-size:12px}
+tfoot td{background:var(--bg);font-weight:600}
+.leg{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--mut);margin:10px 0}
+.leg i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:5px;border:1px solid var(--line)}
+.empty{padding:26px;text-align:center;color:var(--mut)}
+.note{font-size:13px;color:var(--mut);margin-top:12px}
+@media print{.noprint{display:none}body{background:#fff}}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Escala 5x2 – Sinpava">
+<meta property="og:description" content="Monte a escala do mês da sua padaria com folgas, domingo de folga e horários. Baixe em PDF.">
+<meta property="og:image" content="https://sinpava.com.br/escala-capa.jpg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<header class="hero"><img id="logo" alt="Sinpava"><h1>Escala 5x2</h1><p>Folgas, domingo de folga e horários do mês, prontos para imprimir</p></header>
+<main>
+<p class="sub">Informe como a padaria funciona, cadastre cada funcionário com nome, função e turno, e a escala sai pronta.</p>
+
+<section class="card noprint">
+ <div class="row">
+  <label>Empresa<input id="emp" placeholder="Nome da padaria"></label>
+  <label>Mês<span class="two"><select id="mm" aria-label="Mês"></select><select id="aa" aria-label="Ano"></select></span></label><input id="mes" type="hidden">
+  <input id="dur" type="hidden" value="01:00">
+  <label>Jornada / escala<select id="jor"><option value="504">42 horas (8h24 por dia)</option><option value="480">40 horas (8h por dia)</option><option value="720">12x36 (12h de trabalho e 36h de descanso)</option></select></label>
+  <label>Abre às<input id="ab" type="time" value="05:30"></label>
+  <label>Fecha às<input id="fc" type="time" value="20:00"></label>
+  <label>Sábado<span class="two"><select id="sab"><option value="todo" selected>Abre no sábado</option><option value="fecha">Fecha no sábado</option></select><input id="sabh" type="time" aria-label="Fecha no sábado às"></span></label>
+  <label>Domingo<span class="two"><select id="dom"><option value="fecha">Fecha no domingo</option><option value="todo" selected>Abre no domingo</option></select><input id="domh" type="time" aria-label="Fecha no domingo às"></span></label>
+ </div>
+ <div class="row" style="margin-top:12px">
+  <label style="flex:2 1 200px">Nome do funcionário<input id="nome" placeholder="Ex.: Maria Souza" autocomplete="off"></label>
+  <label>Função<select id="fun"></select></label>
+  <label><span id="lt">Turno</span><select id="tur"><option>Manhã</option><option>Tarde</option><option>Noite</option></select></label>
+  <label>Intercalar turno<select id="alt"><option value="n">Não</option><option value="sem">Troca a cada semana</option><option value="2d">Troca a cada 2 dias</option><option value="fds">Sáb e dom em outro turno</option></select></label>
+  <label><span id="l0">Entrada</span><input id="he" type="time"></label>
+  <label><span id="l0b">Saída</span><input id="hs" type="time"></label>
+  <label><span id="ld">Intervalo</span><input id="di" type="time"></label>
+  <label class="alt2" hidden><span id="l1">Entrada</span><input id="he2" type="time"></label>
+  <label class="alt2" hidden><span id="l2">Saída</span><input id="hs2" type="time"></label>
+  <label class="alt2" hidden><span id="ld2">Intervalo</span><input id="di2" type="time"></label>
+  <label id="eql" hidden>Equipe<select id="eq"><option value="">Automática</option><option value="A">Equipe A</option><option value="B">Equipe B</option></select></label>
+  <label>Domingo de folga<select id="df"><option value="1">1 por mês</option><option value="2">A cada 15 dias</option></select></label>
+  <label>Folga<select id="fg"><option value="i">Intercalada</option><option value="f">Fixa</option><option value="m">1 fixa e 1 intercalada</option></select></label>
+  <label id="fxl" hidden>Dias da folga fixa<span class="two"><select id="f1"></select><select id="f2"></select></span></label>
+  <button class="p" id="add" type="button">Incluir funcionário</button>
+ </div>
+ <div class="emps" id="chips"></div>
+</section>
+
+<div id="out"></div>
+<div class="row noprint" style="margin-top:12px"><button class="p" id="pdf" type="button">Baixar escala em PDF</button><button id="xls" type="button">Baixar em Excel</button><button id="prt" type="button">Imprimir</button></div>
+<p class="note" id="msg" role="status"></p>
+<p class="note">Jornada de 5 dias por semana: 42 horas semanais (8h24 por dia) ou 40 horas (8h por dia), conforme a opção escolhida, sempre fora o intervalo. Na opção 12x36, cada funcionário trabalha 12 horas (com o intervalo dentro do turno) e descansa 36, alternando dia sim, dia não; as equipes A e B se revezam e, se você não escolher, a escala divide as pessoas da mesma função e turno entre A e B. O turno da noite não tem horário sugerido: informe a entrada de cada pessoa. Informe o horário de funcionamento: o turno da manhã já começa na abertura e o da tarde já termina no fechamento. Entrada e saída de cada pessoa podem ser mudadas livremente; ao mudar uma, a outra é recalculada. Cada funcionário tem 2 folgas por semana, 1 domingo de folga no mês, ou a cada 15 dias se você escolher essa opção (os domingos são distribuídos entre as funções). Quem intercala turno pode trocar a cada semana (a troca de tarde para manhã só acontece depois de uma folga, para garantir 11 horas de descanso), a cada 2 dias ou ficar com sábado e domingo em outro turno; nesses dois últimos casos a escala avisa quando o descanso entre a tarde e a manhã seguinte fica menor que 11 horas (art. 66 da CLT). Sábado e domingo podem abrir o dia todo, fechar mais cedo (informe a hora) ou ficar fechados; em cada dia aberto você escolhe o horário de fechamento, e o tempo de intervalo é um relógio escolhido para cada funcionário (de 15 minutos até o que a empresa conceder, como 30 min, 1h ou 2h) e nunca passa de 6 dias seguidos de trabalho. Quando faltar alguém de uma função num dia ou turno, a escala avisa em vermelho. O início do intervalo é sugerido, escalonado entre as pessoas da mesma função, e pode ser ajustado. Confira sempre com a convenção coletiva da categoria.</p>
+</main>
+<script>
+const LOGO="data:image/jpeg;base64,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";const LR=0.5389;
+const FUN=["Atendente","Supervisor","Gerente","Caixa","Folguista","Padeiro","Confeiteiro","Ajudante de padeiro","Serviços Gerais","Faxineira","Embalador","Salgadeira","Auxiliar Administrativo","Motorista"];
+const DS=["D","S","T","Q","Q","S","S"];
+const DIAS=["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"];
+const DIAC=["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"];
+const ENT={"Padeiro":"05:00","Ajudante de padeiro":"05:00","Confeiteiro":"05:00","Atendente":"05:30","Caixa":"05:30","Supervisor":"05:30","Gerente":"07:00","Folguista":"05:30","Serviços Gerais":"07:00"};
+let E=[];
+try{E=JSON.parse(localStorage.getItem("sinpava_escala")||"[]")}catch(e){E=[]}
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function save(){try{localStorage.setItem("sinpava_escala",JSON.stringify(E))}catch(e){}}
+const hm=s=>{const[a,b]=s.split(":").map(Number);return a*60+b};
+const fm=x=>String(Math.floor(x/60)%24).padStart(2,"0")+":"+String(x%60).padStart(2,"0");
+const dur=()=>{const v=$("dur").value;const x=v?hm(v):60;return x>=15?x:60};
+const OUT=t=>t==="Manhã"?"Tarde":t==="Tarde"?"Manhã":"Noite";
+const TN=t=>t==="Manhã"?"manhã":t==="Tarde"?"tarde":"noite";
+const LET=t=>t==="Manhã"?"M":t==="Tarde"?"T":"N";
+const REG12=()=>$("jor").value==="720";
+const dd=(p,t)=>p.sh[t].d||dur();
+const durIn=id=>{const v=$(id).value;const x=v?hm(v):0;return x>=15?x:dur()};
+const JOR=()=>+$("jor").value||504;
+const spanJ=(j,d)=>j===720?720:j+(d||dur());
+const saiE=(e,d)=>fm(hm(e)+spanJ(JOR(),d));
+const sai=(p,t)=>saiE(p.sh[t].e,p.sh[t].d);
+const entDeSai=(s,d)=>fm((hm(s)-spanJ(JOR(),d)+1440)%1440);
+const hLab=h=>{const[a,b]=h.split(":");return +a+"h"+(b==="00"?"":b)};
+const fcG=()=>$("fc").value||"20:00";
+const cfgD=dow=>dow===0?{m:$("dom").value,h:$("domh").value||fcG()}:{m:$("sab").value,h:$("sabh").value||fcG()};
+const cedoD=dow=>{const c=cfgD(dow);return c.m!=="fecha"&&hm(c.h)<hm(fcG())};
+function estado(dow,t){if(dow!==0&&dow!==6)return"w";const c=cfgD(dow);if(c.m==="fecha")return"x";if(!cedoD(dow))return"w";return t!=="Manhã"&&hm(c.h)<=840?"x":"h"}
+const turnos=p=>REG12()?[p.t]:["Manhã","Tarde","Noite"].filter(t=>p.sh[t]);
+const shiftsOf=(p,dow)=>p.alt==="fds"?[(dow===0||dow===6)?OUT(p.t):p.t]:p.alt?["Manhã","Tarde"]:[p.t];
+const closedP=(p,dow)=>shiftsOf(p,dow).every(t=>estado(dow,t)==="x");
+const sunFix=p=>!!p.fx&&(p.mx?p.fx[0]===6:p.fx.includes(6))&&!closedP(p,0);
+const nfxP=p=>{const n=2-(closedP(p,0)?1:0)-(closedP(p,6)?1:0);return p.mx?Math.min(1,n):n};
+const fxDays=(p,n,satF)=>{const b=p.fx.filter(x=>x!==6&&!(x===5&&(satF===undefined?closedP(p,6):satF)));[3,1,0,2,4].forEach(x=>{if(b.length<2&&!b.includes(x))b.push(x)});return b.slice(0,n)};
+const altTxt=p=>REG12()?p.t:p.alt==="2d"?"alterna manhã/tarde a cada 2 dias":p.alt==="fds"?"seg a sex "+p.t.toLowerCase()+", sáb e dom "+OUT(p.t).toLowerCase():p.alt?"alterna manhã/tarde por semana":p.t;
+const fxTxt=p=>{if(!p.fx)return"";const n=nfxP(p);if(n===0)return"";const sf=sunFix(p);if(p.mx)return " · 1 folga fixa ("+(sf?"Dom":DIAC[fxDays(p,1)[0]])+") e 1 intercalada";const o=fxDays(p,sf?n-1:n).map(x=>DIAC[x]);return " · folga fixa "+(sf?["Dom",...o]:o).join(" e ")};
+const diasTxt=()=>["Sábado","Domingo"].map((nm,i)=>{const c=cfgD(i?0:6);return nm+": "+(c.m==="fecha"?"fechado":"fecha às "+hLab(c.h))}).join(" | ");
+const usaLetra=()=>REG12()||E.some(p=>p.alt||p.t==="Noite");
+function cellTx(L,i,dias){const c=L.cel[i],t=L.tur[i];if(c==="f")return{tx:"F",cl:"f"};if(c==="d")return{tx:"DF",cl:"d"};const lab=c==="h"&&t==="Manhã"?hLab(cfgD(dias[i].getDay()).h):"";if(L.p.alt||REG12()||t==="Noite")return{tx:lab||LET(t),cl:t==="Tarde"?"w wt":t==="Noite"?"w wn":"w"+(lab?" h":"")};return{tx:lab,cl:"w"+(lab?" h":"")}}
+const dfTxt=L=>L.doms.length?" (DF dia "+L.doms.map(d=>d.getDate()).join(", ")+")":"";
+function padraoI(f,t,e){const k=E.filter(p=>p.f===f&&p.t===t).length;const alvo=t==="Noite"?hm(e)+240+(k%3)*30:(t==="Manhã"?570:870)+(k%3)*30;return fm(Math.max(hm(e)+180,Math.min(alvo,hm(e)+360)))}
+function horario(p,t){const x=p.sh[t],d=dd(p,t);const av=hm(x.i)-hm(x.e)>360?" ⚠ intervalo depois de 6h de trabalho":"";return `${p.alt&&!REG12()?t+": ":""}Entrada ${x.e} · intervalo ${x.i} às ${fm(hm(x.i)+d)} (${fm(d)}) · saída ${sai(p,t)}${av}`}
+const hor=p=>turnos(p).map(t=>{const x=p.sh[t];return p.alt&&!REG12()?`${t[0]} ${x.e}-${sai(p,t)} (int ${x.i})`:`${x.e} às ${sai(p,t)} | int. ${x.i} às ${fm(hm(x.i)+dd(p,t))}`}).join(" | ");
+E=E.map(p=>{p.t=p.t||"Manhã";if(!p.sh){const e=p.e||(p.t==="Tarde"?fm(hm(p.s||"20:00")-504-60):(ENT[p.f]||"05:30"));p.sh={[p.t]:{e,i:p.i||"09:30"}}}delete p.e;delete p.i;delete p.s;p.df=p.df||"1";if(p.alt===true)p.alt="sem";return p});
+
+const dopts=(v)=>DIAS.map((d,j)=>`<option value="${j}"${v===j?" selected":""}>${d}</option>`).join("");
+function defE(f,t,d){
+ const ab=$("ab").value||"05:30",fc=$("fc").value||"20:00";
+ if(t==="Manhã")return (f==="Padeiro"||f==="Confeiteiro"||f==="Ajudante de padeiro")&&hm(ENT[f])<hm(ab)?ENT[f]:ab;
+ return entDeSai(fc,d);
+}
+function pForm(){const a=$("alt").value;return{t:$("tur").value,alt:a==="n"?null:a}}
+function ajustaForm(){
+ const t=$("tur").value,f=$("fun").value,r12=REG12(),noite=t==="Noite";
+ if(noite||r12)$("alt").value="n";
+ $("alt").disabled=noite;
+ const av=$("alt").value,alt=av!=="n"&&!r12,o=OUT(t);
+ ["alt","df","fg"].forEach(id=>$(id).parentElement.hidden=r12);$("eql").hidden=!r12;
+ $("lt").textContent=av==="sem"?"Começa a 1ª semana em":av==="2d"?"Começa em":av==="fds"?"Segunda a sexta em":"Turno";
+ $("l0").textContent=alt?"Entrada ("+t.toLowerCase()+")":"Entrada";
+ $("l0b").textContent=alt?"Saída ("+t.toLowerCase()+")":"Saída";
+ const sf=av==="fds"?", sáb e dom":"";
+ $("ld").textContent=alt?"Intervalo ("+t.toLowerCase()+")":"Intervalo";$("ld2").textContent="Intervalo ("+o.toLowerCase()+")";
+ $("l1").textContent="Entrada ("+o.toLowerCase()+sf+")";
+ $("l2").textContent="Saída ("+o.toLowerCase()+sf+")";
+ document.querySelectorAll(".alt2").forEach(x=>x.hidden=!alt);
+ $("domh").style.display=$("dom").value==="fecha"?"none":"";
+ $("sabh").style.display=$("sab").value==="fecha"?"none":"";
+ ["di","di2"].forEach(id=>{if(!$(id).dataset.m)$(id).value=fm(dur())});
+ if(noite){if(ajustaForm.ult!=="Noite"){$("he").value="";$("hs").value=""}}else{$("he").value=defE(f,t,durIn("di"));$("hs").value=saiE($("he").value,durIn("di"))}
+ ajustaForm.ult=t;
+ if(!noite){$("he2").value=defE(f,o,durIn("di2"));$("hs2").value=saiE($("he2").value,durIn("di2"))}
+ const nf=nfxP({...pForm(),mx:$("fg").value==="m"});
+ $("fxl").hidden=r12||$("fg").value==="i"||nf===0;
+ $("fxl").firstChild.textContent=$("fg").value==="m"?"Dia da folga fixa":"Dias da folga fixa";
+ $("f2").hidden=nf<2;
+}
+$("fun").innerHTML=FUN.map(f=>`<option>${f}</option>`).join("");
+$("f1").innerHTML=dopts(0);$("f2").innerHTML=dopts(3);
+const hoje=new Date();
+const MESES=["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+$("mm").innerHTML=MESES.map((n,i)=>`<option value="${i+1}">${n}</option>`).join("");
+$("aa").innerHTML=[0,1,2].map(k=>hoje.getFullYear()-1+k).map(a=>`<option>${a}</option>`).join("");
+$("mm").value=hoje.getMonth()+1;$("aa").value=hoje.getFullYear();
+const setMes=()=>{$("mes").value=$("aa").value+"-"+String($("mm").value).padStart(2,"0")};
+setMes();
+
+const EP=Date.UTC(2024,0,1);
+const dia0=d=>Date.UTC(d.getFullYear(),d.getMonth(),d.getDate());
+const absW=d=>Math.floor((dia0(d)-EP)/864e5/7);
+const domsOf=(y,m)=>{const r=[];for(let d=new Date(y,m,1);d.getMonth()===m;d=new Date(y,m,d.getDate()+1))if(d.getDay()===0)r.push(d);return r};
+function distDF(y,m,lst){
+ const ds=domsOf(y,m),off=ds.map(()=>[]);
+ return lst.map((p,k)=>{
+  if(p.df==="2"||closedP(p,0)||sunFix(p)||!ds.length)return null;
+  let b=0,bs=1e9;
+  ds.forEach((d,j)=>{const o=off[j];const s=o.filter(q=>q.f===p.f&&q.t===p.t).length*100+o.filter(q=>q.f===p.f).length*10+o.length+((j-k%ds.length+ds.length)%ds.length)*0.01;if(s<bs){bs=s;b=j}});
+  off[b].push(p);return dia0(ds[b]);
+ });
+}
+const combos=(k,cand)=>{if(k<=0)return[[]];if(k===1)return cand.map(a=>[a]);const r=[];for(let i=0;i<cand.length;i++)for(let j=i+1;j<cand.length;j++)r.push([cand[i],cand[j]]);return r};
+function gerar(y,m){
+ const n=new Date(y,m+1,0).getDate();
+ const dias=[...Array(n)].map((_,i)=>new Date(y,m,i+1));
+ const lst=[...E].sort((a,b)=>FUN.indexOf(a.f)-FUN.indexOf(b.f));
+ const cont={},slots=lst.map(p=>cont[p.f]=(cont[p.f]??-1)+1);
+ const w0=absW(dias[0]);
+ const dn=d=>Math.round((dia0(d)-EP)/864e5);
+ const shW=(p,s)=>p.alt==="sem"?(((absW(s)-w0)%2+2)%2===0?p.t:OUT(p.t)):p.t;
+ const shDay=(p,ix,d)=>{if(p.alt==="2d")return((Math.floor(dn(d)/2)+slots[ix])%2===0)?p.t:OUT(p.t);if(p.alt==="fds")return(d.getDay()===0||d.getDay()===6)?OUT(p.t):p.t;return null};
+ const DF=lst.map(()=>new Set());
+ for(let k=-2;k<=0;k++){const dt=new Date(y,m+k,1);const r=distDF(dt.getFullYear(),dt.getMonth(),lst);r.forEach((t,i)=>{if(t!=null)DF[i].add(t)})}
+ const par=[],cf={},cg=[0,0];
+ lst.forEach((p,ix)=>{if(p.df!=="2"||closedP(p,0)||sunFix(p)){par[ix]=null;return}const c=cf[p.f]||(cf[p.f]=[0,0]);const sc=q=>c[q]*10+cg[q];const q=sc(0)<=sc(1)?0:1;par[ix]=q;c[q]++;cg[q]++});
+ const ini=new Date(y,m-2,1);const seg=new Date(ini.getFullYear(),ini.getMonth(),1-((ini.getDay()+6)%7));
+ const fimT=dia0(dias[n-1]);
+ const load={},eqc={};
+ const linhas=lst.map((p,ix)=>{
+  if(REG12()){const key=p.f+"|"+p.t,ixk=eqc[key]=(eqc[key]??-1)+1,off=p.eq==="B"?1:p.eq==="A"?0:ixk%2;
+   const cel=dias.map(d=>{if(((dn(d)+off)%2+2)%2!==0)return"f";const e=estado(d.getDay(),p.t);return e==="x"?"f":e==="h"?"h":"w"});
+   return{p,cel,tur:dias.map(()=>p.t),doms:[],avisos:[],viol:0,eq:off?"B":"A"}}
+  const ld=load[p.f]||(load[p.f]={});
+  const W=[];
+  for(let s=new Date(seg);dia0(s)<=fimT;s=new Date(s.getFullYear(),s.getMonth(),s.getDate()+7)){
+   const sem=[...Array(7)].map((_,i)=>new Date(s.getFullYear(),s.getMonth(),s.getDate()+i));
+   const shD=sem.map(d=>shDay(p,ix,d)||shW(p,s)),sh=shD[6];
+   const stt=estado(6,shD[5]),su=estado(0,shD[6]),fe=su==="x"||sunFix(p);
+   const dfw=!fe&&(p.df==="2"?(par[ix]!=null&&(absW(s)+par[ix])%2===0):DF[ix].has(dia0(sem[6])));
+   const sunC=fe?"f":dfw?"d":su==="h"?"h":"w";
+   const satC=stt==="x"?"f":stt==="h"?"h":"w";
+   const k=2-((fe||dfw)?1:0)-(satC==="f"?1:0);
+   const pv=W[W.length-1],atraso=p.alt==="sem"&&pv&&pv.sh!==sh&&(pv.sunC==="w"||pv.sunC==="h");
+   const porDia=p.alt==="2d"||p.alt==="fds";
+   let ops;
+   if(p.fx&&!p.mx){const FD=fxDays(p,2,satC==="f");ops=k>=2?[[FD[0],FD[1]]]:k===1?(sunFix(p)?[[FD[0]]]:[[FD[0]],[FD[1]]]):[[]]}
+   else{
+    const cand=satC==="f"?[0,1,2,3,4]:[0,1,2,3,4,5];
+    const r=(slots[ix]+absW(s))%6,pref=[r,(r+3)%6];
+    const f0=p.mx&&!sunFix(p)?fxDays(p,1,satC==="f")[0]:-1;
+    const wk=(c,i)=>!c.includes(i)&&!(i===5&&satC==="f")&&!(i===6&&(sunC==="f"||sunC==="d"));
+    ops=combos(k,cand).map(c=>{
+     let sc=(p.mx&&f0>=0&&!c.includes(f0)?1000:0)+c.filter(x=>!pref.includes(x)).length*4+c.reduce((a,x)=>a+(ld[dia0(sem[x])]||0),0)*7+(atraso&&c.length?Math.min(...c)*3:0);
+     if(c.length===1)sc+=Math.abs(c[0]-2.5);else if(c.length===2)sc+=Math.abs(c[1]-c[0]-3);
+     if(porDia){for(let i=0;i<6;i++)if(shD[i]==="Tarde"&&shD[i+1]==="Manhã"&&wk(c,i)&&wk(c,i+1))sc+=30;if(pv&&pv.shD[6]==="Tarde"&&shD[0]==="Manhã"&&(pv.sunC==="w"||pv.sunC==="h")&&wk(c,0))sc+=30}
+     return[c,sc]}).sort((a,b)=>a[1]-b[1]).map(x=>x[0]);
+   }
+   W.push({sem,sunC,satC,ops,sh,shD});
+  }
+  const sim=(wk,c,w,o)=>{let ww=w,oo=o,ok=true;const cel=wk.sem.map((_,i)=>i===6?wk.sunC:i===5?(wk.satC==="f"||c.includes(5)?"f":wk.satC):(c.includes(i)?"f":"w"));cel.forEach(x=>{if(x==="f"||x==="d"){oo++;ww=0}else{ww++;oo=0}if(ww>6||oo>2)ok=false});return{ok,cel,ww,oo}};
+  let w=0,o=0;const mapa={},avisos=[];
+  W.forEach((wk,j)=>{
+   const nx=W[j+1];let es=null;
+   for(const c of wk.ops){const r=sim(wk,c,w,o);if(r.ok&&(!nx||nx.ops.some(c2=>sim(nx,c2,r.ww,r.oo).ok))){es=r;break}}
+   if(!es)for(const c of wk.ops){const r=sim(wk,c,w,o);if(r.ok){es=r;break}}
+   if(!es){es=sim(wk,wk.ops[0],w,o);if(dia0(wk.sem[6])>=dia0(dias[0])&&dia0(wk.sem[0])<=fimT)avisos.push(wk.sem[0])}
+   w=es.ww;o=es.oo;
+   wk.sem.forEach((d,i)=>mapa[dia0(d)]=es.cel[i]);
+  });
+  Object.keys(mapa).forEach(d=>{if(mapa[d]==="f"||mapa[d]==="d")ld[d]=(ld[d]||0)+1});
+  const turMap={};let pw=false,ps=null;
+  W.forEach(wk=>wk.sem.forEach((d,i)=>{
+   const c=mapa[dia0(d)];let sh=wk.shD[i];
+   if(p.alt==="sem"&&pw&&ps&&ps!==sh)sh=ps;
+   turMap[dia0(d)]=sh;
+   const tr=(c==="w"||c==="h");pw=tr;ps=tr?sh:null;
+  }));
+  const cel=dias.map(d=>mapa[dia0(d)]),tur=dias.map(d=>turMap[dia0(d)]);
+  const tb=c=>c==="w"||c==="h";let viol=0;for(let i=0;i<n-1;i++)if(tb(cel[i])&&tb(cel[i+1])&&tur[i]==="Tarde"&&tur[i+1]==="Manhã")viol++;
+  return{p,cel,tur,doms:dias.filter((_,i)=>cel[i]==="d"),avisos,viol};
+ });
+ return{dias,linhas,buracos:buracos(dias,linhas)};
+}
+function buracos(dias,linhas){
+ const out=[];
+ dias.forEach((d,i)=>{
+  ["Manhã","Tarde","Noite"].forEach(t=>{
+   if(estado(d.getDay(),t)==="x")return;
+   const L=linhas.filter(x=>x.tur[i]===t);
+   const grupos=[...new Set(L.filter(x=>x.p.f!=="Folguista").map(x=>x.p.f))];
+   const falta=grupos.filter(f=>!L.some(x=>x.p.f===f&&(x.cel[i]==="w"||x.cel[i]==="h")));
+   if(!falta.length)return;
+   const fol=L.filter(x=>x.p.f==="Folguista"&&(x.cel[i]==="w"||x.cel[i]==="h")).length;
+   const resta=falta.slice(fol);
+   if(resta.length)out.push({i,d,t,falta:resta,cob:falta.length-resta.length});
+  });
+ });
+ return out;
+}
+const WD=["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
+const txtB=b=>WD[b.d.getDay()]+" "+String(b.d.getDate()).padStart(2,"0")+" ("+TN(b.t)+"): sem "+b.falta.join(", ")+(b.cob?" (folguista cobre "+b.cob+")":"");
+function resumo(B,linhas){
+ const g={};B.forEach(b=>b.falta.forEach(f=>{const k=f+"|"+b.t;g[k]=1}));
+ const add=[],ajuste=[];let buracoSem=0;
+ Object.keys(g).forEach(k=>{const[f,t]=k.split("|");const D=7-(estado(6,t)==="x"?1:0)-(estado(0,t)==="x"?1:0);const n=linhas.filter(L=>L.p.f===f&&(L.p.alt||L.p.t===t)).reduce((a,L)=>a+(L.p.alt?0.5:1),0);const need=Math.max(0,Math.ceil(D/5-n-1e-9));
+  const nome=f+" ("+TN(t)+")";if(need>0){add.push("mais "+need+" "+nome);buracoSem+=D-5*n}else ajuste.push(nome)});
+ return{add,ajuste,fol:Math.ceil(buracoSem/5)};
+}
+function alerta(B,linhas){
+ const av=linhas.filter(L=>L.avisos.length);
+ let h="";
+ if(B.length){const r=resumo(B,linhas);h+=`<div class="al"><b>Para a escala fechar, você precisa de:</b><ul style="columns:1">${r.add.map(x=>`<li>${x}</li>`).join("")}${r.ajuste.map(x=>`<li>trocar os dias de folga de ${x}: tem gente suficiente, mas as folgas caem no mesmo dia</li>`).join("")}</ul>${r.add.length&&r.fol?`<p style="margin:6px 0 0">Ou ${r.fol} folguista(s) para cobrir essas folgas.</p>`:""}</div>`}
+ if(av.length)h+=`<div class="al"><b>⚠ Folga fixa com problema:</b> ${av.map(L=>esc(L.p.n)).join(", ")} ficaria mais de 6 dias seguidos trabalhando ou 3 dias seguidos de folga. Troque os dias de folga fixa ou use folga intercalada.</div>`;
+ const vi=linhas.filter(L=>L.viol>0);
+ if(vi.length)h+=`<div class="al"><b>⚠ Descanso menor que 11 horas entre jornadas</b> (art. 66 da CLT): ${vi.map(L=>esc(L.p.n)+" ("+L.viol+"x)").join(", ")} sai da tarde e volta de manhã no dia seguinte sem folga no meio. Para evitar, ponha a folga logo antes da troca.</div>`;
+ if(B.length)h+=`<div class="al"><b>⚠ A escala não fechou: falta funcionário em ${new Set(B.map(b=>b.i)).size} dia(s).</b> Nesses dias e turnos não há ninguém da função trabalhando. Inclua um folguista ou mude as folgas para cobrir.<ul>${B.map(b=>`<li>${txtB(b)}</li>`).join("")}</ul></div>`;
+ else h+=`<div class="ok">✓ Escala fechada: todos os dias e turnos têm pelo menos uma pessoa em cada função.</div>`;
+ return h;
+}
+const regTxt=L=>REG12()?" · 12x36, equipe "+L.eq:fxTxt(L.p);
+const nF=L=>L.cel.filter(c=>c==="f"||c==="d").length;
+const trab=(linhas,i)=>linhas.filter(L=>L.cel[i]==="w"||L.cel[i]==="h").length;
+const closedAll=()=>["Manhã","Tarde"].every(t=>estado(0,t)==="x");
+const cx=t=>t==="Manhã"?"m":"t";
+
+function lista(){
+ $("chips").innerHTML=E.map((p,i)=>{
+  const fx=p.fx;
+  const ds=k=>`<select data-i="${i}" data-k="fx${k}" aria-label="Dia de folga ${k+1}">${dopts(fx[k])}</select>`;
+  const rows=turnos(p).map(t=>`<div class="h">${p.alt?`<b style="font-size:13px;min-width:48px">${t}</b>`:""}<label>Entrada<input type="time" value="${p.sh[t].e}" data-i="${i}" data-s="${t}" data-k="ent"></label><label>Saída<input type="time" value="${sai(p,t)}" data-i="${i}" data-s="${t}" data-k="sai"></label><label>Início do intervalo<input type="time" value="${p.sh[t].i}" data-i="${i}" data-s="${t}" data-k="i"></label><label>Tempo de intervalo<input type="time" value="${fm(dd(p,t))}" data-i="${i}" data-s="${t}" data-k="dur"></label></div><div class="hr" id="hr${i}${cx(t)}">${horario(p,t)}</div>`).join("");
+  return `<div class="er"><div class="h"><b>${esc(p.n)}</b><small>${esc(p.f)} · ${altTxt(p)}</small><button class="x" type="button" data-i="${i}" aria-label="Remover ${esc(p.n)}">×</button></div>${rows}${REG12()?`<div class="h"><label>Equipe<select data-i="${i}" data-k="eq"><option value="">Automática</option><option value="A"${p.eq==="A"?" selected":""}>Equipe A</option><option value="B"${p.eq==="B"?" selected":""}>Equipe B</option></select></label></div>`:`<div class="h"><label>Intercalar turno<select data-i="${i}" data-k="alt"${p.t==="Noite"?" disabled":""}><option value="n"${p.alt?"":" selected"}>Não</option><option value="sem"${p.alt==="sem"?" selected":""}>Troca a cada semana</option><option value="2d"${p.alt==="2d"?" selected":""}>Troca a cada 2 dias</option><option value="fds"${p.alt==="fds"?" selected":""}>Sáb e dom em outro turno</option></select></label>${p.alt?`<label>${p.alt==="fds"?"Seg a sex em":p.alt==="2d"?"Começa em":"1ª semana em"}<select data-i="${i}" data-k="t1"><option${p.t==="Manhã"?" selected":""}>Manhã</option><option${p.t==="Tarde"?" selected":""}>Tarde</option></select></label>`:""}<label>Domingo de folga<select data-i="${i}" data-k="df"><option value="1"${p.df==="2"?"":" selected"}>1 por mês</option><option value="2"${p.df==="2"?" selected":""}>A cada 15 dias</option></select></label><label>Folga<select data-i="${i}" data-k="fg"><option value="i"${fx?"":" selected"}>Intercalada</option><option value="f"${fx&&!p.mx?" selected":""}>Fixa</option><option value="m"${p.mx?" selected":""}>1 fixa e 1 intercalada</option></select></label>${fx&&nfxP(p)>0?`<label>Dias${ds(0)}${nfxP(p)>1?ds(1):""}</label>`:""}</div>`}</div>`}).join("");
+}
+
+const cntTS=(linhas,i,t)=>linhas.filter(L=>(L.cel[i]==="w"||L.cel[i]==="h")&&L.tur[i]===t).length;
+const turPres=linhas=>["Manhã","Tarde","Noite"].filter(t=>linhas.some(L=>L.tur.includes(t)));
+const totTS=(linhas,dias)=>usaLetra()?turPres(linhas).map(t=>`<tr><td class="n">Total ${t.toLowerCase()}</td>`+dias.map((_,i)=>`<td>${cntTS(linhas,i,t)}</td>`).join("")+`<td></td></tr>`).join(""):"";
+function render(){
+ if(!E.length){$("out").innerHTML='<div class="card empty">Inclua o primeiro funcionário para montar a escala.</div>';return}
+ const [y,m]=$("mes").value.split("-").map(Number);
+ if(!y){$("out").innerHTML='<div class="card empty">Escolha o mês da escala.</div>';return}
+ const{dias,linhas,buracos}=gerar(y,m-1);
+ const nomeMes=new Date(y,m-1,1).toLocaleDateString("pt-BR",{month:"long",year:"numeric"});
+ const emp=$("emp").value.trim();
+ const temAlt=usaLetra();
+ let h=`<p style="font-weight:600;margin:0 0 8px">${emp?esc(emp)+" – ":""}${nomeMes}</p>`;
+ h+=`<div class="leg"><span><i style="background:var(--work)"></i>Trabalha</span><span><i style="background:var(--fol)"></i>Folga (F)</span>${closedAll()||REG12()?"":'<span><i style="background:var(--dom)"></i>Domingo de folga (DF)</span>'}<span>${diasTxt()}</span>${temAlt?'<span><i style="background:var(--work)"></i>M = manhã</span><span><i style="background:var(--wt)"></i>T = tarde</span>'+(E.some(p=>p.t==="Noite")?'<span><i style="background:var(--wn)"></i>N = noite</span>':"")+(REG12()?'<span>12x36: 12h de trabalho e 36h de descanso</span>':""):""}</div>`;
+ h+=alerta(buracos,linhas);
+ h+=`<div class="wrap"><table><thead><tr><th class="n">Funcionário</th>`+dias.map(d=>`<th class="${d.getDay()===0?"su":""}">${d.getDate()}<small>${DS[d.getDay()]}</small></th>`).join("")+`<th>Folgas</th></tr></thead><tbody>`;
+ linhas.forEach(L=>{
+  h+=`<tr><td class="n">${esc(L.p.n)}<small>${esc(L.p.f)} · ${altTxt(L.p)}${regTxt(L)}</small>${turnos(L.p).map(t=>`<small>${horario(L.p,t)}</small>`).join("")}${L.avisos.length?'<small style="color:var(--acc)">⚠ folga fixa gera mais de 6 dias seguidos</small>':''}</td>`+L.cel.map((c,i)=>{const z=cellTx(L,i,dias);return `<td class="${z.cl}">${z.tx}</td>`}).join("")+`<td class="t">${nF(L)}${dfTxt(L)}</td></tr>`;
+ });
+ h+=`</tbody><tfoot><tr><td class="n">Trabalhando no dia</td>`+dias.map((_,i)=>`<td>${trab(linhas,i)}</td>`).join("")+`<td></td></tr>`+totTS(linhas,dias)+`<tr><td class="n" style="color:var(--acc)">Faltando funcionário</td>`+dias.map((_,i)=>{const b=buracos.filter(q=>q.i===i);return b.length?`<td class="x" title="${b.map(txtB).join(' | ')}">!</td>`:`<td></td>`}).join("")+`<td></td></tr></tfoot></table></div>`;
+ $("out").innerHTML=h;
+}
+function incluir(){
+ const n=$("nome").value.trim();
+ if(!n){$("nome").focus();return}
+ const f=$("fun").value,t=$("tur").value,alt=$("alt").value!=="n"&&t!=="Noite"&&!REG12(),h=$("he").value;if(!h){$("he").focus();return}
+ const d1=durIn("di"),d2=durIn("di2");const sh={[t]:{e:h,i:padraoI(f,t,h)}};sh[t].d=d1;
+ if(alt){const o=OUT(t),e2=$("he2").value;if(!e2){$("he2").focus();return}sh[o]={e:e2,i:padraoI(f,o,e2)};sh[o].d=d2}
+ const p={n,f,t,sh,df:$("df").value};if($("eq").value)p.eq=$("eq").value;
+ if(alt)p.alt=$("alt").value;
+ if($("fg").value!=="i"){const a=+$("f1").value;let b=+$("f2").value;if(a===b)b=(a+3)%6;p.fx=[a,b];if($("fg").value==="m")p.mx=true}
+ E.push(p);save();$("nome").value="";$("nome").focus();lista();render();
+}
+$("add").onclick=incluir;
+$("nome").addEventListener("keydown",e=>{if(e.key==="Enter")incluir()});
+$("he").onchange=()=>{if($("he").value)$("hs").value=saiE($("he").value,durIn("di"))};
+$("hs").onchange=()=>{if($("hs").value)$("he").value=entDeSai($("hs").value,durIn("di"))};
+$("he2").onchange=()=>{if($("he2").value)$("hs2").value=saiE($("he2").value,durIn("di2"))};
+$("hs2").onchange=()=>{if($("hs2").value)$("he2").value=entDeSai($("hs2").value,durIn("di2"))};
+["di","di2"].forEach(id=>{$(id).addEventListener("input",()=>{$(id).dataset.m=1});$(id).onchange=()=>{const a=id==="di"?"he":"he2",b=id==="di"?"hs":"hs2",tr=(id==="di"?$("tur").value:OUT($("tur").value))==="Tarde";if(tr&&$(b).value)$(a).value=entDeSai($(b).value,durIn(id));else if($(a).value)$(b).value=saiE($(a).value,durIn(id))}});
+$("ab").onchange=ajustaForm;$("fc").onchange=()=>{["domh","sabh"].forEach(id=>{if(!$(id).dataset.m)$(id).value=$("fc").value||"20:00"});ajustaForm();lista();render()};
+["domh","sabh"].forEach(id=>{$(id).value=fcG();$(id).addEventListener("input",()=>{$(id).dataset.m=1})});
+$("tur").onchange=ajustaForm;$("fun").onchange=ajustaForm;$("alt").onchange=ajustaForm;
+$("fg").onchange=ajustaForm;
+["dom","sab","domh","sabh"].forEach(id=>{$(id).onchange=()=>{ajustaForm();lista();render()}});
+$("chips").onclick=e=>{const b=e.target.closest("button");if(b){E.splice(+b.dataset.i,1);save();lista();render()}};
+$("chips").onchange=e=>{
+ const t=e.target,k=t.dataset.k;if(!k)return;
+ const i=+t.dataset.i,p=E[i],s=t.dataset.s;
+ if(k==="dur"){const x=t.value?hm(t.value):0;if(x<15)return;p.sh[s].d=x;save();lista();render();return}
+ if(k==="i"){if(!t.value)return;p.sh[s].i=t.value;save();$("hr"+i+cx(s)).textContent=horario(p,s);render();return}
+ if(k==="ent"||k==="sai"){if(!t.value)return;p.sh[s].e=k==="ent"?t.value:entDeSai(t.value,p.sh[s].d);save();lista();render();return}
+ if(k==="eq"){p.eq=t.value||undefined;save();lista();render();return}
+ if(k==="fg"){p.fx=t.value==="i"?null:[0,3];if(t.value==="m")p.mx=true;else delete p.mx;save();lista();render();return}
+ if(k==="df"){p.df=t.value;save();lista();render();return}
+ if(k==="t1"){p.t=t.value;const a=p.sh["Manhã"],b=p.sh["Tarde"];p.sh={};if(a)p.sh["Manhã"]=a;if(b)p.sh["Tarde"]=b;save();lista();render();return}
+ if(k==="alt"){
+  if(p.t==="Noite"){lista();return}
+  if(t.value!=="n"){p.alt=t.value;const o=OUT(p.t);if(!p.sh[o]){const e2=defE(p.f,o);p.sh[o]={e:e2,i:padraoI(p.f,o,e2)}}}
+  else{delete p.alt;Object.keys(p.sh).forEach(x=>{if(x!==p.t)delete p.sh[x]})}
+  save();lista();render();return;
+ }
+ const j=+k[2];p.fx[j]=+t.value;if(p.fx[0]===p.fx[1])p.fx[1]=(p.fx[0]+3)%6;save();lista();render();
+};
+$("mm").onchange=()=>{setMes();render()};$("aa").onchange=()=>{setMes();render()};$("emp").oninput=render;
+let jorAnt=JOR();
+$("jor").onchange=()=>{const nv=JOR();E.forEach(p=>turnos(p).forEach(t=>{if(t==="Tarde"){const x=p.sh[t],d=x.d||dur(),so=hm(x.e)+spanJ(jorAnt,d);x.e=fm((so-spanJ(nv,d)+1440)%1440)}}));jorAnt=nv;save();try{localStorage.setItem("sinpava_jor",String(nv))}catch(e){}ajustaForm();lista();render()};
+$("dur").onchange=()=>{ajustaForm();lista();render()};
+$("prt").onclick=()=>{let fr=false;try{fr=window.self!==window.top}catch(e){fr=true}if(!fr){try{window.print();return}catch(e){}}baixar(true)};
+
+function msg(t,url,fn){const m=$("msg");m.textContent=t||"";if(url){m.appendChild(document.createTextNode(" "));const a=document.createElement("a");a.href=url;a.download=fn;a.target="_blank";a.rel="noopener";a.textContent="Toque aqui para abrir "+fn;a.style.fontWeight="700";m.appendChild(a)}}
+async function entregar(blob,fn,ok){
+ let dl=null;try{dl=await claude.use("downloads")}catch(e){}
+ if(dl){try{await dl.save({filename:fn,data:blob});msg(ok);return}catch(e){if(e&&e.code==="declined")return}}
+ const u=URL.createObjectURL(blob);
+ try{const a=document.createElement("a");a.href=u;a.download=fn;document.body.appendChild(a);a.click();a.remove()}catch(e){}
+ msg("Se o arquivo não baixou sozinho:",u,fn);
+}
+function carregaPdf(){return new Promise(res=>{
+ if(window.jspdf)return res(true);
+ const us=["https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js","https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js","https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js"];let i=0;
+ const nx=()=>{if(window.jspdf)return res(true);if(i>=us.length)return res(false);const sc=document.createElement("script");sc.src=us[i++];const tm=setTimeout(nx,8000);sc.onload=()=>{clearTimeout(tm);nx()};sc.onerror=()=>{clearTimeout(tm);nx()};document.head.appendChild(sc)};nx()})}
+const colL=n=>{let s="";n++;while(n>0){const r=(n-1)%26;s=String.fromCharCode(65+r)+s;n=Math.floor((n-1)/26)}return s};
+const xe=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const crcT=(()=>{const t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
+const crc32=b=>{let c=0xFFFFFFFF;for(let i=0;i<b.length;i++)c=crcT[(c^b[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0};
+function zipar(files){
+ const enc=new TextEncoder(),loc=[],cen=[];let off=0;
+ const u16=v=>[v&255,(v>>8)&255],u32=v=>[v&255,(v>>8)&255,(v>>16)&255,(v>>>24)&255];
+ files.forEach(f=>{const nm=enc.encode(f.n),d=enc.encode(f.d),c=crc32(d),sz=d.length;
+  const h=new Uint8Array([0x50,0x4b,3,4,...u16(20),...u16(0x0800),...u16(0),...u16(0),...u16(0x21),...u32(c),...u32(sz),...u32(sz),...u16(nm.length),...u16(0)]);
+  loc.push(h,nm,d);
+  cen.push(new Uint8Array([0x50,0x4b,1,2,...u16(20),...u16(20),...u16(0x0800),...u16(0),...u16(0),...u16(0x21),...u32(c),...u32(sz),...u32(sz),...u16(nm.length),...u16(0),...u16(0),...u16(0),...u16(0),...u32(0),...u32(off)]),nm);
+  off+=h.length+nm.length+sz});
+ const cs=cen.reduce((a,x)=>a+x.length,0);
+ const end=new Uint8Array([0x50,0x4b,5,6,...u16(0),...u16(0),...u16(files.length),...u16(files.length),...u32(cs),...u32(off),...u16(0)]);
+ return new Blob([...loc,...cen,end],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+}
+const XSTY=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><fonts count="4"><font><sz val="10"/><name val="Calibri"/></font><font><b/><sz val="10"/><name val="Calibri"/></font><font><b/><sz val="14"/><name val="Calibri"/></font><font><sz val="9"/><color rgb="FF5D6B79"/><name val="Calibri"/></font></fonts><fills count="4"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FFEBEEF2"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFCDD3DA"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="2"><border><left/><right/><top/><bottom/><diagonal/></border><border><left style="thin"><color rgb="FFB8C2CC"/></left><right style="thin"><color rgb="FFB8C2CC"/></right><top style="thin"><color rgb="FFB8C2CC"/></top><bottom style="thin"><color rgb="FFB8C2CC"/></bottom><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="9"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/><xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf><xf numFmtId="0" fontId="1" fillId="0" borderId="1" xfId="0" applyFont="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf><xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf><xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyFont="1"/><xf numFmtId="0" fontId="1" fillId="3" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf><xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyFont="1"/><xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment vertical="center"/></xf></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles><dxfs count="5"><dxf><font><b/><color rgb="FF2B2100"/></font><fill><patternFill><bgColor rgb="FFF6C453"/></patternFill></fill></dxf><dxf><font><b/><color rgb="FFFFFFFF"/></font><fill><patternFill><bgColor rgb="FF8A4FA3"/></patternFill></fill></dxf><dxf><fill><patternFill><bgColor rgb="FFE6F2EF"/></patternFill></fill></dxf><dxf><fill><patternFill><bgColor rgb="FFDDE7F7"/></patternFill></fill></dxf><dxf><fill><patternFill><bgColor rgb="FFD6CEEE"/></patternFill></fill></dxf></dxfs></styleSheet>`;
+function montarXlsx(y,m){
+ const {dias,linhas,buracos}=gerar(y,m-1);
+ const nd=dias.length,C0=4,CF=C0+nd,R0=5,RN=R0+linhas.length-1;
+ const mes=new Date(y,m-1,1).toLocaleDateString("pt-BR",{month:"long",year:"numeric"});
+ const emp=$("emp").value.trim();
+ const T=(r,c,v,s)=>`<c r="${colL(c)}${r}" s="${s}" t="inlineStr"><is><t xml:space="preserve">${xe(v)}</t></is></c>`;
+ const F=(r,c,f,v,s)=>`<c r="${colL(c)}${r}" s="${s}"><f>${xe(f)}</f><v>${v}</v></c>`;
+ const row=(r,cells,ht)=>`<row r="${r}"${ht?` ht="${ht}" customHeight="1"`:""}>${cells.join("")}</row>`;
+ const rows=[];
+ rows.push(row(1,[T(1,0,(emp?emp+" - ":"")+(REG12()?"Escala 12x36 - ":"Escala 5x2 - ")+mes,5)],22));
+ const labs=[...new Set(["Sábado","Domingo"].map((_,i)=>i?0:6).filter(cedoD).map(d=>hLab(cfgD(d).h)))];
+ rows.push(row(2,[T(2,0,"M = manhã | T = tarde | N = noite | F = folga | DF = domingo de folga"+(labs.length?" | "+labs.join(", ")+" = fecha nesse horário":"")+" | "+diasTxt(),7)]));
+ rows.push(row(3,[T(3,0,"Para mudar a escala, clique no dia e escolha a letra na lista. Para trocar um funcionário, troque o nome na coluna A. Os totais se atualizam sozinhos.",7)]));
+ const hd=[T(4,0,"Funcionário",2),T(4,1,"Função",2),T(4,2,"Turno",2),T(4,3,"Horário",2)];
+ dias.forEach((d,i)=>hd.push(T(4,C0+i,d.getDate()+"\n"+DS[d.getDay()],d.getDay()===0?6:2)));
+ hd.push(T(4,CF,"Folgas",2));
+ rows.push(row(4,hd,30));
+ linhas.forEach((L,k)=>{
+  const r=R0+k,cs=[T(r,0,L.p.n,4),T(r,1,L.p.f,4),T(r,2,altTxt(L.p).replace(/^./,x=>x.toUpperCase()),4),T(r,3,hor(L.p),4)];
+  let nf=0;
+  L.cel.forEach((c,i)=>{const v=c==="f"?"F":c==="d"?"DF":(c==="h"&&L.tur[i]==="Manhã")?hLab(cfgD(dias[i].getDay()).h):LET(L.tur[i]);if(c==="f"||c==="d")nf++;cs.push(T(r,C0+i,v,3))});
+  const rg=`${colL(C0)}${r}:${colL(CF-1)}${r}`;
+  cs.push(F(r,CF,`COUNTIF(${rg},"F")+COUNTIF(${rg},"DF")`,nf,3));
+  rows.push(row(r,cs,L.p.alt?36:28));
+ });
+ const tot=(r,nome,fn,val)=>{const cs=[T(r,0,nome,8),T(r,1,"",8),T(r,2,"",8),T(r,3,"",8)];dias.forEach((_,i)=>{const cl=colL(C0+i),rg=`${cl}$${R0}:${cl}$${RN}`;cs.push(F(r,C0+i,fn(rg),val(i),2))});cs.push(T(r,CF,"",8));rows.push(row(r,cs))};
+ const cnt=(i,t)=>linhas.filter(L=>{const c=L.cel[i];return c!=="f"&&c!=="d"&&L.tur[i]===({M:"Manhã",T:"Tarde",N:"Noite"})[t]}).length;
+ const temN=linhas.some(L=>L.tur.includes("Noite"));
+ const RT=RN+1;
+ tot(RT,"Trabalhando no dia",rg=>`COUNTIF(${rg},"M")+COUNTIF(${rg},"T")+COUNTIF(${rg},"N")`+labs.map(l=>`+COUNTIF(${rg},"${l}")`).join(""),i=>cnt(i,"M")+cnt(i,"T")+cnt(i,"N"));
+ tot(RT+1,"Total manhã",rg=>`COUNTIF(${rg},"M")`+labs.map(l=>`+COUNTIF(${rg},"${l}")`).join(""),i=>cnt(i,"M"));
+ tot(RT+2,"Total tarde",rg=>`COUNTIF(${rg},"T")`,i=>cnt(i,"T"));
+ if(temN)tot(RT+3,"Total noite",rg=>`COUNTIF(${rg},"N")`,i=>cnt(i,"N"));
+ let rr=RT+(temN?5:4);
+ if(buracos.length){rows.push(row(rr,[T(rr,0,"Atenção (calculado quando a escala foi gerada):",7)]));rr++;buracos.slice(0,12).forEach(b=>{rows.push(row(rr,[T(rr,0,txtB(b),7)]));rr++});if(buracos.length>12){rows.push(row(rr,[T(rr,0,"... e mais "+(buracos.length-12)+" dia(s)/turno(s) sem cobertura.",7)]));rr++}}
+ const rng=`${colL(C0)}${R0}:${colL(CF-1)}${RN}`;
+ const cols=`<cols><col min="1" max="1" width="22" customWidth="1"/><col min="2" max="2" width="18" customWidth="1"/><col min="3" max="3" width="18" customWidth="1"/><col min="4" max="4" width="46" customWidth="1"/><col min="${C0+1}" max="${CF}" width="4.6" customWidth="1"/><col min="${CF+1}" max="${CF+1}" width="8" customWidth="1"/></cols>`;
+ const cf=`<conditionalFormatting sqref="${rng}"><cfRule type="cellIs" dxfId="0" priority="1" operator="equal"><formula>"F"</formula></cfRule><cfRule type="cellIs" dxfId="1" priority="2" operator="equal"><formula>"DF"</formula></cfRule><cfRule type="cellIs" dxfId="2" priority="3" operator="equal"><formula>"M"</formula></cfRule><cfRule type="cellIs" dxfId="3" priority="4" operator="equal"><formula>"T"</formula></cfRule><cfRule type="cellIs" dxfId="4" priority="5" operator="equal"><formula>"N"</formula></cfRule></conditionalFormatting>`;
+ const dv=`<dataValidations count="1"><dataValidation type="list" allowBlank="1" showErrorMessage="1" sqref="${rng}"><formula1>"${["M","T","N","F","DF",...labs].join(",")}"</formula1></dataValidation></dataValidations>`;
+ const sheet=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetPr><pageSetUpPr fitToPage="1"/></sheetPr><sheetViews><sheetView workbookViewId="0"><pane xSplit="4" ySplit="4" topLeftCell="${colL(C0)}5" activePane="bottomRight" state="frozen"/></sheetView></sheetViews><sheetFormatPr defaultRowHeight="15"/>${cols}<sheetData>${rows.join("")}</sheetData>${cf}${dv}<pageMargins left="0.3" right="0.3" top="0.4" bottom="0.4" header="0.2" footer="0.2"/><pageSetup orientation="landscape" fitToWidth="1" fitToHeight="0"/></worksheet>`;
+ const H='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
+ return zipar([
+  {n:"[Content_Types].xml",d:H+'<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>'},
+  {n:"_rels/.rels",d:H+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>'},
+  {n:"xl/workbook.xml",d:H+'<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Escala" sheetId="1" r:id="rId1"/></sheets><calcPr fullCalcOnLoad="1"/></workbook>'},
+  {n:"xl/_rels/workbook.xml.rels",d:H+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>'},
+  {n:"xl/styles.xml",d:XSTY},
+  {n:"xl/worksheets/sheet1.xml",d:sheet}
+ ]);
+}
+async function baixarXlsx(){
+ msg("");
+ if(!E.length){msg("Inclua ao menos um funcionário.");return}
+ const [y,m]=$("mes").value.split("-").map(Number);
+ if(!y){msg("Escolha o mês da escala.");return}
+ try{await entregar(montarXlsx(y,m),`escala-${y}-${String(m).padStart(2,"0")}.xlsx`,"Planilha salva. Abra no Excel para editar: nos dias, escolha a letra na lista.")}catch(e){msg("Não foi possível gerar a planilha. Tente de novo.")}
+}
+async function baixar(imp){
+ msg("");
+ if(!E.length){msg("Inclua ao menos um funcionário.");return}
+ const [y,m]=$("mes").value.split("-").map(Number);
+ if(!y){msg("Escolha o mês da escala.");return}
+ msg("Gerando o PDF...");
+ if(!(await carregaPdf())){msg("Não foi possível carregar o gerador de PDF. Verifique a internet e tente de novo.");return}
+ msg("");
+ const {dias,linhas,buracos}=gerar(y,m-1);
+ const doc=new window.jspdf.jsPDF({orientation:"landscape",unit:"mm",format:"a4"});
+ const mes=new Date(y,m-1,1).toLocaleDateString("pt-BR",{month:"long",year:"numeric"});
+ const emp=$("emp").value.trim();
+ const temAlt=usaLetra();
+ const X=8,NW=64,TW=18,RH=10.5,HH=9,cw=(281-NW-TW)/dias.length,tx=X+NW+dias.length*cw;
+ let py;doc.setDrawColor(120);doc.setLineWidth(0.1);
+ const head=()=>{py=8;doc.setTextColor(0);doc.setFont("helvetica","bold");doc.setFontSize(12);doc.text((emp?emp+" - ":"")+(REG12()?"Escala 12x36 - ":"Escala 5x2 - ")+mes,X,py+4);const LW=24,LH=LW*LR;try{if(LOGO)doc.addImage(LOGO,"JPEG",297-X-LW,6,LW,LH)}catch(e){}py+=Math.max(9,LH+3);
+  doc.setFontSize(6.5);doc.setFillColor(235,238,242);doc.rect(X,py,NW,HH,"FD");doc.text("Funcionário",X+2,py+5.5);
+  dias.forEach((dt,i)=>{const x=X+NW+i*cw;if(dt.getDay()===0)doc.setFillColor(205,211,218);else doc.setFillColor(245,247,249);doc.rect(x,py,cw,HH,"FD");doc.setFontSize(6.5);doc.text(String(dt.getDate()),x+cw/2,py+4,{align:"center"});doc.setFontSize(5);doc.text(DS[dt.getDay()],x+cw/2,py+7.5,{align:"center"})});
+  doc.setFontSize(6.5);doc.setFillColor(235,238,242);doc.rect(tx,py,TW,HH,"FD");doc.text("Folgas",tx+TW/2,py+5.5,{align:"center"});py+=HH};
+ head();
+ linhas.forEach(L=>{
+  if(py+RH>195){doc.addPage();head()}
+  doc.setFillColor(255,255,255);doc.rect(X,py,NW,RH,"S");doc.setTextColor(0);
+  doc.setFont("helvetica","bold");doc.setFontSize(7.5);doc.text(L.p.n.slice(0,34),X+2,py+3.6);
+  doc.setFont("helvetica","normal");doc.setFontSize(5.8);doc.text(L.p.f+" - "+altTxt(L.p)+regTxt(L).replace(/ · /g," - "),X+2,py+6.4);doc.text(hor(L.p),X+2,py+9);
+  L.cel.forEach((c,i)=>{const x=X+NW+i*cw,z=cellTx(L,i,dias);
+   if(c==="f")doc.setFillColor(246,196,83);else if(c==="d")doc.setFillColor(138,79,163);else if(z.cl.includes("wt"))doc.setFillColor(221,231,247);else if(z.cl.includes("wn"))doc.setFillColor(214,206,238);else doc.setFillColor(230,242,239);
+   doc.rect(x,py,cw,RH,"FD");
+   if(z.tx){const fraca=c==="h"&&L.tur[i]!=="Tarde";doc.setFont("helvetica",fraca?"normal":"bold");doc.setFontSize(fraca?5.5:6.5);if(c==="d")doc.setTextColor(255);else if(c==="f")doc.setTextColor(43,33,0);else doc.setTextColor(fraca?60:40);doc.text(z.tx,x+cw/2,py+RH/2+1.2,{align:"center"});doc.setTextColor(0)}
+  });
+  doc.setFillColor(255,255,255);doc.rect(tx,py,TW,RH,"S");doc.setFont("helvetica","normal");doc.setFontSize(6);
+  doc.text(String(nF(L)),tx+TW/2,py+RH/2-0.6,{align:"center"});
+  if(L.doms.length){doc.setFontSize(5);doc.text("DF "+L.doms.map(d=>d.getDate()).join(","),tx+TW/2,py+RH/2+2.6,{align:"center"})}
+  py+=RH});
+ if(py+21+(temAlt?5*turPres(linhas).length:0)>200){doc.addPage();head()}
+ doc.setFillColor(235,238,242);doc.rect(X,py,NW,7,"FD");doc.setFont("helvetica","bold");doc.setFontSize(6.5);doc.text("Trabalhando no dia",X+2,py+4.5);
+ dias.forEach((_,i)=>{const x=X+NW+i*cw;doc.rect(x,py,cw,7,"FD");doc.text(String(trab(linhas,i)),x+cw/2,py+4.5,{align:"center"})});
+ py+=7;if(temAlt)turPres(linhas).forEach(t=>{doc.setFillColor(235,238,242);doc.setTextColor(0);doc.setFont("helvetica","bold");doc.setFontSize(6);doc.rect(X,py,NW,5,"FD");doc.text("Total "+t.toLowerCase(),X+2,py+3.5);dias.forEach((_,i)=>{const x=X+NW+i*cw;doc.rect(x,py,cw,5,"FD");doc.text(String(cntTS(linhas,i,t)),x+cw/2,py+3.5,{align:"center"})});py+=5});
+ doc.setFillColor(235,238,242);doc.rect(X,py,NW,7,"FD");doc.setFontSize(6.5);doc.setTextColor(196,43,42);doc.text("Faltando funcionário",X+2,py+4.5);
+ dias.forEach((_,i)=>{const x=X+NW+i*cw,b=buracos.some(q=>q.i===i);if(b)doc.setFillColor(196,43,42);else doc.setFillColor(255,255,255);doc.rect(x,py,cw,7,"FD");if(b){doc.setTextColor(255);doc.text("!",x+cw/2,py+4.5,{align:"center"})}});
+ doc.setTextColor(0);py+=11;doc.setFont("helvetica","normal");doc.setFontSize(6.5);
+ doc.text("F = folga | DF = domingo de folga | "+(temAlt?"M = manhã | T = tarde | N = noite | ":"")+diasTxt()+" | "+(REG12()?"Escala 12x36 (12 horas de trabalho e 36 de descanso, intervalo dentro do turno de 12h)":"Jornada 5x2, "+(JOR()===480?"40 horas semanais (8h por dia trabalhado, fora o intervalo)":"42 horas semanais (8h24 por dia trabalhado, fora o intervalo)")),X,py);
+ if(buracos.length){py+=5;doc.setFont("helvetica","bold");doc.setTextColor(196,43,42);const rs=resumo(buracos,linhas);doc.splitTextToSize("ATENÇÃO - para a escala fechar: "+[...rs.add,...rs.ajuste.map(x=>"trocar folgas de "+x)].join("; ")+(rs.add.length&&rs.fol?" (ou "+rs.fol+" folguista(s))":"")+". Dias sem cobertura: "+buracos.map(txtB).join("; ")+". Inclua um folguista ou ajuste as folgas.",281).forEach(l=>{if(py>200){doc.addPage();py=12}doc.text(l,X,py);py+=3.5});doc.setTextColor(0)}
+ const fn=`escala-${y}-${String(m).padStart(2,"0")}.pdf`;
+ try{await entregar(doc.output("blob"),fn,imp?"PDF salvo. Abra o arquivo e use a opção Imprimir.":"PDF salvo no aparelho. Para enviar pelo WhatsApp: abra a conversa, toque no clipe e escolha Documento.")}catch(e){msg("Não foi possível gerar o PDF. Tente de novo.")}
+}
+$("pdf").onclick=()=>baixar(false);$("xls").onclick=baixarXlsx;
+if(LOGO)$("logo").src=LOGO;else $("logo").hidden=true;
+try{const j=localStorage.getItem("sinpava_jor");if(j==="480"||j==="504"||j==="720"){$("jor").value=j;jorAnt=+j}}catch(e){}
+ajustaForm();lista();render();
+</script>
+</body>
+</html>
